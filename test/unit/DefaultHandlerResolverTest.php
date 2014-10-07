@@ -10,6 +10,7 @@
 namespace PMG\CommandBus;
 
 use PMG\CommandBus\Stubs\SimpleCommand;
+use PMG\CommandBus\Stubs\HandlerAwareStub;
 use PMG\CommandBus\Stubs\NoHandlerCommand;
 
 class DefaultHandlerResolverTest extends UnitTestCase
@@ -22,6 +23,15 @@ class DefaultHandlerResolverTest extends UnitTestCase
     public function testCommandWithoutHandlerCausesError()
     {
         $this->resolver->handlerFor(new NoHandlerCommand());
+    }
+
+    public function testHandlerAwareCommandUsesValueFromToHandlerMethod()
+    {
+        $command = new HandlerAwareStub(__NAMESPACE__.'\\Stubs\\SimpleHandler');
+        $this->assertEquals(
+            __NAMESPACE__.'\\Stubs\\SimpleHandler',
+            $this->resolver->handlerFor($command)
+        );
     }
 
     public function testCommandWithValidHandlerReturnsHandlerClass()

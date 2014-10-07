@@ -21,7 +21,9 @@ final class DefaultHandlerResolver implements HandlerResolver
      */
     public function handlerFor(Command $command)
     {
-        $handlerClass = $this->handlerClassFor($command);
+        $handlerClass = $command instanceof HandlerAware ?
+            $command->toHandler() : $this->handlerClassFor($command);
+
         if (!class_exists($handlerClass)) {
             throw new Exception\HandlerNotFoundException(sprintf(
                 'Could not locate handler for "%s"',
