@@ -16,6 +16,6 @@ class SimpleHandler implements CommandHandler
 {
     public function handle(Command $command)
     {
-
+        echo 'Hello'; // cause some side effect that we can observe for tests
     }
 }
