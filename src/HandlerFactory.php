@@ -22,6 +22,8 @@ interface HandlerFactory
      *
      * @since   1.0
      * @param   string $handlerClass
+     * @throws  CommandBusException if the class supplied is not an instance of
+     *          a command handler.
      * @return  CommandHandler
      */
     public function createHandler($handlerClass);
