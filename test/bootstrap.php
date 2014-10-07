@@ -10,3 +10,4 @@
 $loader = require __DIR__.'/../vendor/autoload.php';
 $loader->addPsr4('PMG\\CommandBus\\', __DIR__.'/unit');
 $loader->addPsr4('PMG\\CommandBus\\', __DIR__.'/acceptance');
+$loader->addPsr4('PMG\\CommandBus\\Stubs\\', __DIR__.'/stubs');
